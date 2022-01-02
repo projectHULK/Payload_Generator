@@ -17,8 +17,15 @@ echo -e "[3] Andriod"
 echo -e "[4] Windows"
 echo -e "\n"
 read -p "[+] Select a platform? [1/2/3/4] " input
-echo -e "Payload_List Direcorty created"
-mkdir Payload_List 2>/dev/null
+echo -e "\n"
+    if [ -d /$USER/Payload_Generator/Payload_List ]; 
+        then
+		    echo -e "    ${RED}Payload_List Direcorty exist${XX}"
+        else
+            mkdir Payload_List 2>/dev/null
+            echo -e "    ${GREEN}Payload_List Direcorty has been created${XX}"
+    fi
+    echo -e "\n"
 if [[ $input == "1" ]]; then ## Linux
     echo -e "${RED} \t\t╔════════════════════════════════════════════════════════════════════════════════════════════════════════╗${XX}"
     echo -e "${RED} \t\t ═════════════════════════════════════════════[ Linux Payload ]══════════════════════════════════════════ ${XX}"
